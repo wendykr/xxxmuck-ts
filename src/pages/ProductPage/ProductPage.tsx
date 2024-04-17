@@ -1,18 +1,11 @@
 import './ProductPage.scss';
 import { Button } from '../../components/Button/Button';
 import { useParams } from 'react-router-dom';
-import { Product } from '../../data/data-models';
+import { ProductData } from '../../data/data-models';
 
-interface Props {
-  products: Product[];
-  isLoading: boolean;
-  error: string;
-}
-
-export const ProductPage = ({ products, isLoading, error }: Props): JSX.Element => {
+export const ProductPage = ({ products, isLoading, error }: ProductData): JSX.Element => {
   const { productId } = useParams<{ productId: string }>();
   const productData = products.find((product) => product.id == productId);
-
 
   return (
     <main className="productPage">

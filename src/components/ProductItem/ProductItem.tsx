@@ -1,13 +1,8 @@
 import './ProductItem.scss';
 import { NavLink } from 'react-router-dom';
+import { Product } from '../../data/data-models';
 
-interface Props {
-  id: number;
-  name: string;
-  image: string;
-}
-
-export const ProductItem = ({ id, name, image }: Props): JSX.Element => {
+export const ProductItem = ({ id, name, image }: Product): JSX.Element => {
   return (
     <NavLink to={`/product/${id}`} className="productItem">
       <img src={image} className="productItem__image"/>
