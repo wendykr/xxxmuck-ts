@@ -76,7 +76,7 @@ const createRouter = async (): Promise<void> => {
     { basename: "/xxxmuck-ts" }
   );
   
-  const rootElement: HTMLElement | null = document.getElementById('root');
+  const rootElement: HTMLElement = document.getElementById('root')!;
   ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
 };
 
