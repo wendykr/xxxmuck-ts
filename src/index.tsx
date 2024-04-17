@@ -33,51 +33,47 @@ const fetchProducts = async (): Promise<ProductData> => {
   }
 };
 
-const createRouter = async (): Promise<void> => {
-  const productData = await fetchProducts();
-  
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<App />}>
-        <Route
-          path="/"
-          element={
-            productData ? (
-              <HomePage
-                products={productData.products}
-                isLoading={productData.isLoading}
-                error={productData.error}
-              />
-            ) : (
-              <div>Loading data...</div>
-            )
-          }
-        />
-        <Route
-          path="/product/:productId"
-          element={
-            productData ? (
-              <ProductPage
-                products={productData.products}
-                isLoading={productData.isLoading}
-                error={productData.error}
-              />
-            ) : (
-              <div>Loading data...</div>
-            )
-          }
-        />
-        <Route
-          path="*"
-          element={<ErrorPage />}
-        />
-      </Route>
-    ),
-    { basename: "/xxxmuck-ts" }
-  );
-  
-  const rootElement: HTMLElement = document.getElementById('root')!;
-  ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
-};
+const productData = await fetchProducts();
 
-createRouter();
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route
+        path="/"
+        element={
+          productData ? (
+            <HomePage
+              products={productData.products}
+              isLoading={productData.isLoading}
+              error={productData.error}
+            />
+          ) : (
+            <div>Loading data...</div>
+          )
+        }
+      />
+      <Route
+        path="/product/:productId"
+        element={
+          productData ? (
+            <ProductPage
+              products={productData.products}
+              isLoading={productData.isLoading}
+              error={productData.error}
+            />
+          ) : (
+            <div>Loading data...</div>
+          )
+        }
+      />
+      <Route
+        path="*"
+        element={<ErrorPage />}
+      />
+    </Route>
+  ),
+  { basename: "/xxxmuck-ts" }
+);
+
+const rootElement: HTMLElement = document.getElementById('root')!;
+  ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
